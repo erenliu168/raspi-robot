@@ -46,7 +46,7 @@ def set_speed(m,n):
 def get_dis():
     # 发射超声波，并计算回响时间
     GPIO.output(trigger_pin, GPIO.LOW)
-    time.sleep(0.5)
+    time.sleep(0.2)
     GPIO.output(trigger_pin, GPIO.HIGH)
     time.sleep(0.00001)
     GPIO.output(trigger_pin, GPIO.LOW)
@@ -97,15 +97,15 @@ try:
       l = False
       if get_dis()<20:
           print("Too close in front.")
-          GPIO.output(pin, stop)
+          GPIO.output(motor_pin, stop)
           f = True
       if not GPIO.input(sensor_pin_right):
           print("Right: Object detected")
-          GPIO.output(pin, stop)
+          GPIO.output(motor_pin, stop)
           r = True
       if not GPIO.input(sensor_pin_left):
           print("Left: Object detected")
-          GPIO.output(pin, stop)
+          GPIO.output(motor_pin, stop)
           l = True
       adjust(f,r,l)
 except Exception as e:
